@@ -1,0 +1,12 @@
+﻿@using AdvancedDatabaseAndORMAssignment1.Models.ViewModel;
+@model DeleteSongInPlayListVM;
+
+<h3>Add Customer to Address</h3>
+<form method="post" asp-action="DeleteSong">
+    @*    <select asp-for="PlayListId" asp-items="@Model.PlayLists"></select>
+    *@
+    <button type="submit">Delete</button>
+</form>
+<div>
+    @Model.ViewMessage
+</div>

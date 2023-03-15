@@ -1,0 +1,13 @@
+﻿
+@using AdvancedDatabaseAndORMAssignment1.Models.ViewModel;
+@model AddToPlaylistVM;
+
+<h3>Add Customer to Address</h3>
+<form method="post" asp-action="AddToPlayList">
+    <select asp-for="PlayListId" asp-items="@Model.PlayLists"></select>
+   
+    <button type="submit">Add</button>
+</form>
+<div>
+    @Model.ViewMessage
+</div>

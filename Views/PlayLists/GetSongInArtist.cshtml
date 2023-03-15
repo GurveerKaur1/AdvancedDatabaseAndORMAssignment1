@@ -1,0 +1,12 @@
+﻿@using AdvancedDatabaseAndORMAssignment1.Models.ViewModel;
+@model GetSongInArtistVM;
+
+<h3>Get All Songs</h3>
+<form method="get" asp-action="GetSongInArtist">
+    <select asp-for="@Model.ArtistId" asp-items="@Model.Songs"></select>
+
+
+</form>
+@*<div>
+    @Model.ViewMessage
+</div>*@

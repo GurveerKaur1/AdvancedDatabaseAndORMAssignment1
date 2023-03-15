@@ -1,0 +1,18 @@
+﻿@model AdvancedDatabaseAndORMAssignment1.Models.Artist
+
+@{
+    ViewData["Title"] = "GetAlbums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetAlbums</h1>
+ @foreach (SongContributor ca in Model.SongContributor)
+ {
+     <dd>
+       @ca.Song.Title
+     </dd>
+ }
+            
+        
+
+  
