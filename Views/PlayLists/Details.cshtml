@@ -22,7 +22,7 @@
         {
             <tr>
                 <td>
-                  <h6>  @c.Song.Title   ||    <a  asp-action="DeleteSongsInPlayList" asp-route-id="@c.SongId">Delete</a></h6>
+                  <h6>  @c.Song.Title   ||    <a  asp-action="DeleteSongsInPlayList" asp-route-id="@c.PlayListId,@c.SongId">Delete</a></h6>
                 </td>
                
             </tr>

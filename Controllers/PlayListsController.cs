@@ -165,17 +165,17 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> DeleteSongsInPlayList(DeleteSongInPlayListVM vm,  int songId)
+        public async Task<IActionResult> DeleteSongsInPlayList(DeleteSongInPlayListVM vm, int playListId, int songId)
         {
             vm.SongId = songId;
-           // vm.PlayListId = playListId;
+            vm.PlayListId = playListId;
             if (vm.PlayListId != null || vm.SongId != null)
             {
                 if (!_context.PlayListSong.Any(ca => ca.SongId == songId))
                 {
-                    PlayListSong playListSong = await _context.PlayListSong.FirstOrDefaultAsync(c => c.SongId == songId);
+                    PlayListSong playListSong = await _context.PlayListSong.FirstOrDefaultAsync(c => c.SongId == songId && c.PlayListId == playListId);
                   Song song = _context.Song.FirstOrDefault(c => c.Id == songId);
-                    // PlayList playList = _context.PlayList.FirstOrDefault(c => c.Id == playListId);
+                  PlayList playList = _context.PlayList.FirstOrDefault(c => c.Id == playListId);
 
                     
                    
@@ -183,7 +183,7 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
                    await _context.SaveChangesAsync();
 
 
-                    //vm.ViewMessage = $"Successfully deleted {song.Title} ";
+                    vm.ViewMessage = $"Successfully deleted {song.Title} ";
 
 
                 }
