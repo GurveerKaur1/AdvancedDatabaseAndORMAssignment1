@@ -165,21 +165,25 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> DeleteSongsInPlayList(DeleteSongInPlayListVM vm, int playListId, int songId)
+        public async Task<IActionResult> DeleteSongsInPlayList(DeleteSongInPlayListVM vm,  int songId)
         {
-            if (vm.PlayListId == null && vm.SongId == null )
+            vm.SongId = songId;
+           // vm.PlayListId = playListId;
+            if (vm.PlayListId != null || vm.SongId != null)
             {
-                if (!_context.PlayListSong.Any(ca => ca.SongId == songId && ca.PlayListId == playListId))
+                if (!_context.PlayListSong.Any(ca => ca.SongId == songId))
                 {
-                    PlayListSong playListSong = _context.PlayListSong.Where(c => c.SongId == songId && c.PlayListId == playListId).FirstOrDefault();
-                    Song song = _context.Song.FirstOrDefault(c => c.Id == songId);
-                    // PlayList playList = _context.PlayList.FirstOrDefault(c => c.Id == playListId);  
+                    PlayListSong playListSong = await _context.PlayListSong.FirstOrDefaultAsync(c => c.SongId == songId);
+                  Song song = _context.Song.FirstOrDefault(c => c.Id == songId);
+                    // PlayList playList = _context.PlayList.FirstOrDefault(c => c.Id == playListId);
+
+                    
                    
-                    _context.PlayListSong.Remove(playListSong);
-                    _context.SaveChanges();
+                    _context.Song.Remove(song);
+                   await _context.SaveChangesAsync();
 
 
-                    vm.ViewMessage = $"Successfully deleted {song.Title} ";
+                    //vm.ViewMessage = $"Successfully deleted {song.Title} ";
 
 
                 }
@@ -188,14 +192,14 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
                     vm.ViewMessage = "Selected song is deleted";
                 }
                 return View(vm);
-            }
+        }
             else
             {
                 throw new Exception("Error Message");
-            }
-            
-            
-        }
+    }
+
+
+}
 
         [HttpGet]
 

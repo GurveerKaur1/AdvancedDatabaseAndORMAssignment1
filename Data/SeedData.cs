@@ -181,7 +181,7 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
                 context.PlayListSong.Add(playListSongEight);
                 context.PlayListSong.Add(playListSongNine);
             }
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
 
 
