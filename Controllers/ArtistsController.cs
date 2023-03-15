@@ -153,33 +153,7 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> View(int ? id)
-        {
-
-            if (id == null || _context.Artist == null)
-            {
-                return NotFound();
-            }
-
-            var artist = await _context.Artist.Include(a => a.SongContributor).ThenInclude(c => c.Song).ThenInclude(c => c.Album).FirstOrDefaultAsync(m => m.Id == id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
-
-            return RedirectToAction("Details", artist);
-        }
-
-        [HttpGet]
-        
-        public  async Task<IActionResult> GetSongInArtist(int artistId, int albumId)
-        {
-            SongContributor songContributor = _context.SongContributor.FirstOrDefault(a => a.ArtistId == artistId && a.Song.AlbumId == albumId);
-
-           GetSongInArtistVM vm = new GetSongInArtistVM(_context.Song.ToList(), artistId, albumId);
-            return View(vm);
-        }
-
+      
         public async Task<IActionResult> GetAlbums(int id)
         {
             if (id == null || _context.Artist == null)
@@ -196,24 +170,7 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
             return View( artist);
         }
 
-        //public async Task<IActionResult> GetSongInArtist(int id)
-        //{
-
-        //    if (id == null || _context.Artist == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var artist = await _context.Artist.Include(a => a.SongContributor).ThenInclude(c => c.Song).ThenInclude(c => c.Album).FirstOrDefaultAsync(m => m.Id == id);
-        //    if (artist == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(artist);
-        //}
-
-
+       
         private bool ArtistExists(int id)
         {
           return _context.Artist.Any(e => e.Id == id);

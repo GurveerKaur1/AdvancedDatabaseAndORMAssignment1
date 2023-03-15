@@ -19,11 +19,11 @@
         </dd>
 
         @foreach (SongContributor ca in Model.SongContributor.DistinctBy(ca=> ca.Song.Album.Title))
-            {
+        {
                         <td>
-              <h6>  @ca.Song.Album.Title   || <a asp-action="GetAlbums" asp-route-id="@ca.ArtistId">SongsOfTheArtist</a></h6>
+         <h6>  @ca.Song.Album.Title   || <a asp-action="GetAlbums" asp-route-id="@ca.ArtistId">SongsOfTheArtist</a></h6>
                         </td>
-            }
+        }
            
     </dl>
 </div>
