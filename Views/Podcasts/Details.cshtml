@@ -1,0 +1,49 @@
+﻿@model AdvancedDatabaseAndORMAssignment1.Models.Podcast
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Podcast</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    <dl>
+        @foreach (Episodes p in Model.Episodes)
+        {
+            <dd>@p.Name</dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<form asp-action="Sort" asp-route-Id="@Model.Id" method="post">
+    <select name="sort" id="sort">
+        <option value="Chronological">Chronological</option>
+        <option value="Reverse-Chronological">Reverse-Chronological</option>
+@*      //<option>Reverse-Chronological</option>
+*@    </select>
+@*    <input type="hidden" name="secret" value="Special note that cannot be seen" />
+*@   
+     <input type="Submit" value="Submit" />
+    
+</form>
+
+
+@*<form asp-action="Podcasts" method="post">
+    <select asp-for="SortMethod" asp-items="@AdvancedDatabaseAndORMAssignment1.Models.ViewModel.SortMethods"
+</form>
+*@

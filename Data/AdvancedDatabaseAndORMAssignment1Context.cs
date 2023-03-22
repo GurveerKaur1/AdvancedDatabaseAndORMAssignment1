@@ -20,8 +20,12 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
         public DbSet<PlayList> PlayList { get; set; } = default!;
         public DbSet<PlayListSong> PlayListSong { get; set; } = default!;
         public DbSet<SongContributor> SongContributor { get; set; } = default!;
+        public DbSet<Podcast> Podcasts { get; set; } = default!;
 
-
+        public DbSet<Episodes> Episodes { get; set;} = default!;
+        public DbSet<ListenerLists> ListenerLists { get; set; } = default!;
+        public DbSet<PodcastArtist> PodcastArtists { get; set; } = default!;
+        public DbSet<PodcastListener> PodcastListeners { get; set; } = default!;
 
 
     }

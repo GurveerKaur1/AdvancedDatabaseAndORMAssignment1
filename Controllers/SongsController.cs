@@ -21,19 +21,15 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
         }
 
         // GET: Songs
-        public async Task<IActionResult> Index( int? albumId)
+        public async Task<IActionResult> Index()
         {
-            var advancedDatabaseAndORMAssignment1Context = _context.Song.Include(s => s.Album).Include(s => s.SongContributor).ThenInclude(s => s.Artist);
-            if(albumId == null)
-            {
-                return View(await advancedDatabaseAndORMAssignment1Context.ToListAsync());
-
+            if (_context.Song.Include(s => s.SongContributor).Any(s => s.SongContributor == null)) { 
+                ViewBag.ErrorMessage = "Songs must have an artist and album";
+                return View();
             }
-            else
-            {
-                var advancedDatabaseAndORMAssignment1Context2 = advancedDatabaseAndORMAssignment1Context.Where(c => c.AlbumId == albumId).ToList();
-                return View(advancedDatabaseAndORMAssignment1Context2);
-            }
+            else {
+                var advancedDatabaseAndORMAssignment1Context = _context.Song.Include(s => s.Album);
+                return View(await advancedDatabaseAndORMAssignment1Context.ToListAsync()); }
         }
 
         // GET: Songs/Details/5

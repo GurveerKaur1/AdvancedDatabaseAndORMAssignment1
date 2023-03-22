@@ -5,11 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@{
+    if(ViewBag.ErrorMessage != null)
+    {
+        <p>@ViewBag.ErrorMessage</p>
+    }
+    else
+    {
+        <h1>Index</h1>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +31,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Album)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,12 +45,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Album.Id)
             </td>
+            
             <td>
 
                     <a asp-action="AddToPlayList" asp-route-id="@item?.Id">AddToPlayList</a>
 
             </td>
         </tr>
+
+        
 }
     </tbody>
 </table>
+
+
+    }
+}
