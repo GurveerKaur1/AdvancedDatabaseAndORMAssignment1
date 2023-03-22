@@ -4,6 +4,7 @@ using AdvancedDatabaseAndORMAssignment1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvancedDatabaseAndORMAssignment1.Migrations
 {
     [DbContext(typeof(AdvancedDatabaseAndORMAssignment1Context))]
-    partial class AdvancedDatabaseAndORMAssignment1ContextModelSnapshot : ModelSnapshot
+    [Migration("20230318100400_ValidationAdded")]
+    partial class ValidationAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,52 +59,6 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Artist");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Episodes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AirDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DurationSeconds")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PodcastId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PodcastId");
-
-                    b.ToTable("Episodes");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.ListenerLists", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ListenerLists");
                 });
 
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PlayList", b =>
@@ -148,70 +105,6 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
                     b.ToTable("PlayListSong");
                 });
 
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Podcast", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Podcasts");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PodcastArtist", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ArtistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PodcastId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("PodcastId");
-
-                    b.ToTable("PodcastArtists");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PodcastListener", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ListenerListsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PodcastId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ListenerListsId");
-
-                    b.HasIndex("PodcastId");
-
-                    b.ToTable("PodcastListeners");
-                });
-
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Song", b =>
                 {
                     b.Property<int>("Id")
@@ -230,9 +123,6 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("TrackNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -264,17 +154,6 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
                     b.ToTable("SongContributor");
                 });
 
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Episodes", b =>
-                {
-                    b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.Podcast", "Podcast")
-                        .WithMany("Episodes")
-                        .HasForeignKey("PodcastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Podcast");
-                });
-
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PlayListSong", b =>
                 {
                     b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.PlayList", "PlayList")
@@ -292,44 +171,6 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
                     b.Navigation("PlayList");
 
                     b.Navigation("Song");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PodcastArtist", b =>
-                {
-                    b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.Artist", "Artist")
-                        .WithMany("PodcastArtists")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.Podcast", "Podcast")
-                        .WithMany("PodcastArtists")
-                        .HasForeignKey("PodcastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Podcast");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PodcastListener", b =>
-                {
-                    b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.ListenerLists", "ListenerLists")
-                        .WithMany("PodcastListener")
-                        .HasForeignKey("ListenerListsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AdvancedDatabaseAndORMAssignment1.Models.Podcast", "Podcast")
-                        .WithMany("PodcastListener")
-                        .HasForeignKey("PodcastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ListenerLists");
-
-                    b.Navigation("Podcast");
                 });
 
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Song", b =>
@@ -369,28 +210,12 @@ namespace AdvancedDatabaseAndORMAssignment1.Migrations
 
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Artist", b =>
                 {
-                    b.Navigation("PodcastArtists");
-
                     b.Navigation("SongContributor");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.ListenerLists", b =>
-                {
-                    b.Navigation("PodcastListener");
                 });
 
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.PlayList", b =>
                 {
                     b.Navigation("PlayListSongs");
-                });
-
-            modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Podcast", b =>
-                {
-                    b.Navigation("Episodes");
-
-                    b.Navigation("PodcastArtists");
-
-                    b.Navigation("PodcastListener");
                 });
 
             modelBuilder.Entity("AdvancedDatabaseAndORMAssignment1.Models.Song", b =>

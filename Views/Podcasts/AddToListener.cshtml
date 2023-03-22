@@ -1,0 +1,12 @@
+﻿@using AdvancedDatabaseAndORMAssignment1.Models.ViewModel;
+@model AddToListenerListVM;
+
+<h3>Add Customer to Address</h3>
+<form method="post" asp-action="AddToListener">
+    <select asp-for="ListenerListId" asp-items="@Model.Listeners"></select>
+
+    <button type="submit">Add</button>
+</form>
+<div>
+    @Model.ViewMessage
+</div>

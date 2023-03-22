@@ -40,26 +40,26 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
             //context.SaveChanges();
              await context.SaveChangesAsync();
 
-            Song DarkLove = new Song("Dark Love", 240, AlbumOne.Id);
-            Song SongTwo = new Song("295", 240, AlbumOne.Id);
-            Song Need = new Song("No Need", 360, AlbumFive.Id);
-            Song Yarrian = new Song("Yarrian", 280, AlbumSix.Id);
-            Song Ahead = new Song("Way Ahead", 120, AlbumFive.Id);
-            Song Rim = new Song("Rim", 150, AlbumSix.Id);
-            Song Look = new Song("Don't Look", 120, AlbumSix.Id);
-            Song Circle = new Song("Circle", 240, AlbumFive.Id);
-            Song Bapu = new Song("Bapu", 240, AlbumTwo.Id);
-            Song Skool = new Song("Old Skool", 120, AlbumOne.Id);
-            Song Bambiha = new Song("Bambiha", 180, AlbumTwo.Id);
-            Song Dhakka = new Song("Dhakka", 136, AlbumTwo.Id);
-            Song Chilli = new Song("Red Chilli", 120, AlbumThree.Id);
-            Song Surma = new Song("Surma", 145, AlbumThree.Id);
-            Song Mood = new Song("Mood", 136, AlbumFour.Id);
-            Song Peepa = new Song("Peepa", 240, AlbumFour.Id);
-            Song Gedi = new Song("Raat Di gedi", 167, AlbumThree.Id);
-            Song GOAT = new Song("G.O.A.T", 124, AlbumFour.Id);
-            Song Lemonade = new Song("Lemonade", 136, AlbumThree.Id);
-            Song Shine = new Song("Born to Shine", 124, AlbumOne.Id);
+            Song DarkLove = new Song("Dark Love", 240, AlbumOne.Id, 1);
+            Song SongTwo = new Song("295", 240, AlbumOne.Id, 2);
+            Song Need = new Song("No Need", 360, AlbumFive.Id, 3);
+            Song Yarrian = new Song("Yarrian", 280, AlbumSix.Id, 4);
+            Song Ahead = new Song("Way Ahead", 120, AlbumFive.Id, 5);
+            Song Rim = new Song("Rim", 150, AlbumSix.Id, 6);
+            Song Look = new Song("Don't Look", 120, AlbumSix.Id, 7);
+            Song Circle = new Song("Circle", 240, AlbumFive.Id, 8);
+            Song Bapu = new Song("Bapu", 240, AlbumTwo.Id, 9);
+            Song Skool = new Song("Old Skool", 120, AlbumOne.Id, 10);
+            Song Bambiha = new Song("Bambiha", 180, AlbumTwo.Id, 11);
+            Song Dhakka = new Song("Dhakka", 136, AlbumTwo.Id, 12);
+            Song Chilli = new Song("Red Chilli", 120, AlbumThree.Id, 13);
+            Song Surma = new Song("Surma", 145, AlbumThree.Id, 14);
+            Song Mood = new Song("Mood", 136, AlbumFour.Id, 15);
+            Song Peepa = new Song("Peepa", 240, AlbumFour.Id, 16);
+            Song Gedi = new Song("Raat Di gedi", 167, AlbumThree.Id, 17);
+            Song GOAT = new Song("G.O.A.T", 124, AlbumFour.Id, 18);
+            Song Lemonade = new Song("Lemonade", 136, AlbumThree.Id, 19);
+            Song Shine = new Song("Born to Shine", 124, AlbumOne.Id, 20);
  
 
             if (!context.Song.Any())
@@ -183,7 +183,76 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
             }
             await context.SaveChangesAsync();
 
+            Podcast podcastOne = new Podcast("The Daily");
+            Podcast podcastTwo = new Podcast("Code Switch");
+            Podcast podcastThree = new Podcast("Reply All");
+            Podcast podcastFour = new Podcast("Home Coming");
 
+            if (!context.Podcasts.Any())
+            {
+                context.Podcasts.Add(podcastOne);
+                context.Podcasts.Add(podcastTwo);
+                context.Podcasts.Add(podcastThree);
+                context.Podcasts.Add(podcastFour);
+            }
+
+            await context.SaveChangesAsync();
+
+            Episodes episodesOne = new Episodes("First", 2300, new DateTime(2015, 12, 20), podcastOne.Id);
+            Episodes episodesTwo = new Episodes("Second", 2700, new DateTime(2016, 8, 19), podcastOne.Id);
+            Episodes episodesThree = new Episodes("Third", 2800, new DateTime(2015, 12, 17), podcastOne.Id);
+            Episodes episodesFour = new Episodes("Fourth", 3400, new DateTime(2015, 07, 23), podcastTwo.Id);
+            Episodes episodesFive = new Episodes("Fifth", 5600, new DateTime(2015, 06, 20), podcastTwo.Id);
+            Episodes episodesSix = new Episodes("Sixth", 3900, new DateTime(2015, 04, 12), podcastTwo.Id);
+            Episodes episodesSeven = new Episodes("Seven", 40000, new DateTime(2015, 03, 20), podcastThree.Id);
+            Episodes episodesEight = new Episodes("Eigth", 7800,new DateTime(2015, 02, 7), podcastThree.Id);
+            Episodes episodesNine = new Episodes("Nine", 3000, new DateTime(2015, 01, 20), podcastThree.Id);
+            Episodes episodesTen = new Episodes("Tenth", 6789, new DateTime(2015, 05, 30), podcastFour.Id);
+            Episodes episodesEleven = new Episodes("Eleventh", 4599,new DateTime(2015, 09, 20), podcastFour.Id);
+            Episodes episodesTweleve = new Episodes("Tweleveth", 8000, new DateTime(2015, 10, 27), podcastFour.Id);
+
+            if (!context.Episodes.Any())
+            {
+                context.Add(episodesOne);
+                context.Add(episodesTwo);
+                context.Add(episodesThree);
+                context.Add(episodesFour);
+                context.Add(episodesFive);
+                context.Add(episodesSix);
+                context.Add(episodesSeven);
+                context.Add(episodesEight);
+                context.Add(episodesNine);
+                context.Add(episodesTen);
+                context.Add(episodesEleven);
+                context.Add(episodesTweleve);
+            }
+
+            await context.SaveChangesAsync();
+
+            ListenerLists listenerOne = new ListenerLists("ListFirst");
+            ListenerLists listenerTwo = new ListenerLists("ListTwo");
+            ListenerLists listenerThree = new ListenerLists("ListThree");
+            if(!context.ListenerLists.Any())
+            {
+                context.Add(listenerOne);
+                context.Add(listenerTwo);
+                context.Add(listenerThree);
+                
+            }
+            await context.SaveChangesAsync();
+
+            PodcastListener podcastListenerOne = new PodcastListener(podcastOne.Id, listenerOne.Id);
+            PodcastListener podcastListenerTwo = new PodcastListener(podcastTwo.Id, listenerOne.Id);
+            PodcastListener podcastListenerThree = new PodcastListener(podcastThree.Id, listenerTwo.Id);
+
+            if(!context.PodcastListeners.Any())
+            {
+                context.Add(podcastListenerOne);
+                context.Add(podcastListenerTwo);
+                context.Add(podcastListenerThree);
+            }
+
+            await context.SaveChangesAsync();
 
         }
     }

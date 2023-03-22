@@ -1,4 +1,6 @@
-﻿namespace AdvancedDatabaseAndORMAssignment1.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AdvancedDatabaseAndORMAssignment1.Models
 {
     public class PlayListSong
     {
@@ -11,6 +13,9 @@
 
         public int SongId { get; set;}
 
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH/mm/ss}")]
+        [DataType(DataType.DateTime)]
         public DateTime TimeAdded { get; set; }
         public PlayListSong(int playListId, int songId, DateTime timeAdded)
         {
