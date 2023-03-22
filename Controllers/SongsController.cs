@@ -23,13 +23,9 @@ namespace AdvancedDatabaseAndORMAssignment1.Controllers
         // GET: Songs
         public async Task<IActionResult> Index()
         {
-            if (_context.Song.Include(s => s.SongContributor).Any(s => s.SongContributor == null)) { 
-                ViewBag.ErrorMessage = "Songs must have an artist and album";
-                return View();
-            }
-            else {
+           
                 var advancedDatabaseAndORMAssignment1Context = _context.Song.Include(s => s.Album);
-                return View(await advancedDatabaseAndORMAssignment1Context.ToListAsync()); }
+                return View(await advancedDatabaseAndORMAssignment1Context.ToListAsync()); 
         }
 
         // GET: Songs/Details/5

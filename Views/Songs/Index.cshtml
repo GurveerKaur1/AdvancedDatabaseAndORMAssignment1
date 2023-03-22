@@ -4,16 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-@{
-    if(ViewBag.ErrorMessage != null)
-    {
-        <p>@ViewBag.ErrorMessage</p>
-    }
-    else
-    {
-        <h1>Index</h1>
+  <h1>Index</h1>
 
         <p>
             <a asp-action="Create">Create New</a>
@@ -52,12 +43,10 @@
 
             </td>
         </tr>
-
+       
         
 }
     </tbody>
 </table>
 
 
-    }
-}

@@ -200,16 +200,16 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
 
             Episodes episodesOne = new Episodes("First", 2300, new DateTime(2015, 12, 20), podcastOne.Id);
             Episodes episodesTwo = new Episodes("Second", 2700, new DateTime(2016, 8, 19), podcastOne.Id);
-            Episodes episodesThree = new Episodes("Third", 2800, new DateTime(2015, 12, 20), podcastOne.Id);
-            Episodes episodesFour = new Episodes("Fourth", 3400, new DateTime(2015, 12, 20), podcastTwo.Id);
-            Episodes episodesFive = new Episodes("Fifth", 5600, new DateTime(2015, 12, 20), podcastTwo.Id);
-            Episodes episodesSix = new Episodes("Sixth", 3900, new DateTime(2015, 12, 20), podcastTwo.Id);
-            Episodes episodesSeven = new Episodes("Seven", 40000, new DateTime(2015, 12, 20), podcastThree.Id);
-            Episodes episodesEight = new Episodes("Eigth", 7800,new DateTime(2015, 12, 20), podcastThree.Id);
-            Episodes episodesNine = new Episodes("Nine", 3000, new DateTime(2015, 12, 20), podcastThree.Id);
-            Episodes episodesTen = new Episodes("Tenth", 6789, new DateTime(2015, 12, 20), podcastFour.Id);
-            Episodes episodesEleven = new Episodes("Eleventh", 4599,new DateTime(2015, 12, 20), podcastFour.Id);
-            Episodes episodesTweleve = new Episodes("Tweleveth", 8000, new DateTime(2015, 12, 20), podcastFour.Id);
+            Episodes episodesThree = new Episodes("Third", 2800, new DateTime(2015, 12, 17), podcastOne.Id);
+            Episodes episodesFour = new Episodes("Fourth", 3400, new DateTime(2015, 07, 23), podcastTwo.Id);
+            Episodes episodesFive = new Episodes("Fifth", 5600, new DateTime(2015, 06, 20), podcastTwo.Id);
+            Episodes episodesSix = new Episodes("Sixth", 3900, new DateTime(2015, 04, 12), podcastTwo.Id);
+            Episodes episodesSeven = new Episodes("Seven", 40000, new DateTime(2015, 03, 20), podcastThree.Id);
+            Episodes episodesEight = new Episodes("Eigth", 7800,new DateTime(2015, 02, 7), podcastThree.Id);
+            Episodes episodesNine = new Episodes("Nine", 3000, new DateTime(2015, 01, 20), podcastThree.Id);
+            Episodes episodesTen = new Episodes("Tenth", 6789, new DateTime(2015, 05, 30), podcastFour.Id);
+            Episodes episodesEleven = new Episodes("Eleventh", 4599,new DateTime(2015, 09, 20), podcastFour.Id);
+            Episodes episodesTweleve = new Episodes("Tweleveth", 8000, new DateTime(2015, 10, 27), podcastFour.Id);
 
             if (!context.Episodes.Any())
             {
@@ -253,6 +253,7 @@ namespace AdvancedDatabaseAndORMAssignment1.Data
             }
 
             await context.SaveChangesAsync();
+
         }
     }
 }
